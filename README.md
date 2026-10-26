@@ -94,6 +94,7 @@ Per Section 8 of the assignment specification, every AI tool and model version u
 | :--- | :--- | :--- | :--- |
 | Gemini 3.8 Flash (High) | Track E (and Repo setup) | 2026-10-26 | Repo architecture, spec compilation, Track E dataset generator, independent validator, 10-seed baseline benchmarking |
 | Gemini 3.8 Flash (High) | Tracks C, G, H, F, J | 2026-10-26 | Day 3 environment harnesses, Qiskit Bell state smoke test, TPC-H profiler, ToyLang grammar proposal, test profiler |
+| Gemini 3.8 Flash (High) | Track A | 2026-10-26 | Day 4: 10 continuous optimizers in NumPy, hand-derived backprop, HVP, Fisher/low-rank curvature, 4 landscapes, sensitivity sweep |
 | *(Pending user inputs for other tools: Claude, Copilot, ChatGPT, etc.)* | | | |
 
 ---
@@ -104,17 +105,17 @@ Per Section 5 of [`ASSIGNMENT_SPEC.md`](./ASSIGNMENT_SPEC.md), every taught algo
 
 | Chapter 6 Area | Method / Topic Required | Track | Code Location | Status & Result Summary |
 | :--- | :--- | :--- | :--- | :--- |
-| **Foundations in ML** | ML as Optimization (params, loss, regularization) | Track A | `track_A_continuous/code/` | Planned |
-| | Convex vs Non-Convex Landscapes (minima, saddle points) | Track A | `track_A_continuous/code/` | Planned |
-| | Quantum computing concepts & optimization role in QML | Track C / I | `track_C_quantum/code/smoke_test_bell.py` | **Verified**: Qiskit 2.6.1 Bell state smoke test passed (StatevectorSampler) |
-| **Continuous Optimization** | GD, SGD, Mini-batch SGD | Track A | `track_A_continuous/code/` | Planned |
-| | Momentum & Nesterov Accelerated Gradient (NAG) | Track A | `track_A_continuous/code/` | Planned |
-| | AdaGrad, RMSProp, Adam | Track A | `track_A_continuous/code/` | Planned |
-| | Second-order / Curvature (Newton, Gauss-Newton) | Track A | `track_A_continuous/code/` | Planned |
-| | Backpropagation (distinct from optimizer) | Track A | `track_A_continuous/code/` | Planned |
-| | Curvature Approximations (Fisher, diagonal/low-rank, HVP) | Track A | `track_A_continuous/code/` | Planned |
-| | Convergence analysis (convex, strongly convex, non-convex) | Track A | `track_A_continuous/code/` | Planned |
-| | Step-size, optimizer tuning, noisy objectives | Track A | `track_A_continuous/code/` | Planned |
+| **Foundations in ML** | ML as Optimization (params, loss, regularization) | Track A | `track_A_continuous/code/landscapes.py` | **Complete**: Ridge regression demo; L2 eigenvalue shift proved |
+| | Convex vs Non-Convex Landscapes (minima, saddle points) | Track A | `track_A_continuous/code/landscapes.py` | **Complete**: Evaluated across convex, strongly convex, and saddle landscape |
+| | Quantum computing concepts & optimization role in QML | Track C / I / A | `track_A_continuous/REPORT.md` | **Documented**: Theoretical analysis of PQCs, hybrid VQE/QAOA loop, barren plateaus |
+| **Continuous Optimization** | GD, SGD, Mini-batch SGD | Track A | `track_A_continuous/code/optimizers.py` | **Complete**: Implemented from scratch; verified across 4 landscapes |
+| | Momentum & Nesterov Accelerated Gradient (NAG) | Track A | `track_A_continuous/code/optimizers.py` | **Complete**: Polyak heavy-ball & Nesterov lookahead braking verified |
+| | AdaGrad, RMSProp, Adam | Track A | `track_A_continuous/code/optimizers.py` | **Complete**: Adaptive per-coordinate coordinate scaling & moment tracking |
+| | Second-order / Curvature (Newton, Gauss-Newton) | Track A | `track_A_continuous/code/optimizers.py` | **Complete**: Exact Newton damping; Gauss-Newton on non-linear residuals |
+| | Backpropagation (distinct from optimizer) | Track A | `track_A_continuous/code/neural_net_backprop.py` | **Complete**: Hand-derived 2-layer MLP backprop verified vs finite differences ($2.14 \times 10^{-11}$) |
+| | Curvature Approximations (Fisher, diagonal/low-rank, HVP) | Track A | `track_A_continuous/code/neural_net_backprop.py` | **Complete**: Directional HVP, empirical Fisher FIM, diagonal & truncated low-rank SVD |
+| | Convergence analysis (convex, strongly convex, non-convex) | Track A | `track_A_continuous/REPORT.md` | **Complete**: Convergence rate analysis; documented Newton saddle trap |
+| | Step-size, optimizer tuning, noisy objectives | Track A | `track_A_continuous/code/run_benchmarks.py` | **Complete**: 10-seed repeated runs on noisy objective; step-size sweep ($\eta \in [10^{-4}, 2.0]$) |
 | **Discrete Optimization** | Greedy selection methods | Track B | `track_B_discrete/code/` | Planned |
 | | Integer Linear Programming (ILP) | Track B / E | `track_B_discrete/code/` | Planned |
 | | Branch-and-Bound | Track B | `track_B_discrete/code/` | Planned |
