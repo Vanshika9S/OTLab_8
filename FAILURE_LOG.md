@@ -90,3 +90,17 @@ Each entry must document:
   ```
 - **Key Lesson**: In multi-module monorepos, individual script bootstrapping (`sys.path.insert`) is necessary for direct script runs, but pytest requires a root `conftest.py` or `pytest.ini` configuration to guarantee consistent cross-platform module discovery.
 
+---
+
+## Case 5: Pytest Test Discovery Naming Collision on Subsystem Helper Functions
+
+- **Track & Component**: Track D (Submodular Optimization — `submodular_opt.py` & `test_parallel_distributed.py`)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Test Discovery & Fixture Resolution Failure]`
+- **Description & Output**: Running `pytest -v` caused a collection/setup error:
+  `ERROR at setup of test_diminishing_returns`
+  `file submodular_opt.py:87: fixture 'obj' not found`
+- **Root Cause**: The library function was named `def test_diminishing_returns(obj, num_trials=500, ...)`. When imported into the test module via `from track_D_submodular_parallel.code.submodular_opt import test_diminishing_returns`, pytest's default collector matched the `test_*` pattern, concluded that `test_diminishing_returns` was a test case rather than a library helper, and attempted to resolve the argument `obj` as a pytest fixture.
+- **Verified Fix**: Renamed the helper function to `check_diminishing_returns` across the codebase, reserving the `test_*` prefix strictly for zero-argument or fixture-backed test cases.
+- **Key Lesson**: Never prefix utility, helper, or mathematical verification functions with `test_` inside source modules. Use prefixes like `check_`, `verify_`, or `validate_` to prevent pytest fixture auto-discovery collisions.
+

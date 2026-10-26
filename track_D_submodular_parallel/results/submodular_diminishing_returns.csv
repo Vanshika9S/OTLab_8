@@ -1,0 +1,2 @@
+Objective,Subset_Pairs_Tested,Violations,Diminishing_Returns_Holds,Min_Gain_Difference,Mean_Gain_Difference
+FacilityLocationCoverage,500,0,True,-2.842170943040401e-14,6.324507864972241

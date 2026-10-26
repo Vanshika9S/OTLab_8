@@ -1,0 +1,2 @@
+num_micro_tasks,sequential_time_ms,parallel_with_ipc_ms,slowdown_factor,verdict
+1000,0.2387,4.4722,18.7,Parallelism fails: IPC and dispatch overhead dominate trivial computation.

@@ -1,0 +1,2 @@
+Problem,Synergy_Bonus,Greedy_Selected,Greedy_Value,Optimal_Selected,Optimal_Value,Approximation_Ratio,Nemhauser_Bound,Bound_Violated
+NonSubmodularSynergy,100.0,"[2, 3]",3.0,"[0, 1]",102.0,0.0294,0.6321,True

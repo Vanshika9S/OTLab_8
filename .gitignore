@@ -41,3 +41,5 @@ credentials.json
 
 # Windows directory junctions
 track_C_quantum_opt
+track_D_parallel_distributed
+
