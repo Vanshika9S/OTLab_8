@@ -95,6 +95,7 @@ Per Section 8 of the assignment specification, every AI tool and model version u
 | Gemini 3.8 Flash (High) | Track E (and Repo setup) | 2026-10-26 | Repo architecture, spec compilation, Track E dataset generator, independent validator, 10-seed baseline benchmarking |
 | Gemini 3.8 Flash (High) | Tracks C, G, H, F, J | 2026-10-26 | Day 3 environment harnesses, Qiskit Bell state smoke test, TPC-H profiler, ToyLang grammar proposal, test profiler |
 | Gemini 3.8 Flash (High) | Track A | 2026-10-26 | Day 4: 10 continuous optimizers in NumPy, hand-derived backprop, HVP, Fisher/low-rank curvature, 4 landscapes, sensitivity sweep |
+| Gemini 3.8 Flash (High) | Track B | 2026-10-26 | Day 5: 5 knapsack solvers (BF, Greedy, DP, ILP, B&B), Max-Cut QUBO/Ising, constraint penalties, 10-seed SA, Track C export |
 | *(Pending user inputs for other tools: Claude, Copilot, ChatGPT, etc.)* | | | |
 
 ---
@@ -116,13 +117,13 @@ Per Section 5 of [`ASSIGNMENT_SPEC.md`](./ASSIGNMENT_SPEC.md), every taught algo
 | | Curvature Approximations (Fisher, diagonal/low-rank, HVP) | Track A | `track_A_continuous/code/neural_net_backprop.py` | **Complete**: Directional HVP, empirical Fisher FIM, diagonal & truncated low-rank SVD |
 | | Convergence analysis (convex, strongly convex, non-convex) | Track A | `track_A_continuous/REPORT.md` | **Complete**: Convergence rate analysis; documented Newton saddle trap |
 | | Step-size, optimizer tuning, noisy objectives | Track A | `track_A_continuous/code/run_benchmarks.py` | **Complete**: 10-seed repeated runs on noisy objective; step-size sweep ($\eta \in [10^{-4}, 2.0]$) |
-| **Discrete Optimization** | Greedy selection methods | Track B | `track_B_discrete/code/` | Planned |
-| | Integer Linear Programming (ILP) | Track B / E | `track_B_discrete/code/` | Planned |
-| | Branch-and-Bound | Track B | `track_B_discrete/code/` | Planned |
-| | Dynamic Programming | Track B / F | `track_B_discrete/code/` | Planned |
-| | Feature selection / combinatorial applications | Track B | `track_B_discrete/code/` | Planned |
-| | QUBO & Ising formulation with penalty terms | Track B / C | `track_B_discrete/code/` | Planned |
-| **Quantum Optimization** | QAOA (solving Track B QUBO / Max-Cut) | Track C | `track_C_quantum/code/` | Planned (Smoke test operational) |
+| **Discrete Optimization** | Greedy selection methods | Track B | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: Value-to-weight density ratio heuristic ($O(N \log N)$) |
+| | Integer Linear Programming (ILP) | Track B / E | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: HiGHS branch-and-cut solving 0-1 knapsack |
+| | Branch-and-Bound | Track B | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: Hand-written B&B with fractional relaxation bounds (0.25 ms on N=20) |
+| | Dynamic Programming | Track B / F | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: 2D tabulation $O(N \cdot W)$ with subset backtracking |
+| | Feature selection / combinatorial applications | Track B | `track_B_discrete/code/qubo_ising.py` | **Complete**: Cardinality constraint penalty formulation verified |
+| | QUBO & Ising formulation with penalty terms | Track B / C | `track_B_discrete/code/qubo_ising.py` | **Complete**: Max-Cut QUBO & Ising derived; 10-seed SA solved; exported for Track C |
+| **Quantum Optimization** | QAOA (solving Track B QUBO / Max-Cut) | Track C | `track_C_quantum/code/` | Planned (Smoke test operational; Track B export ready) |
 | | VQE (Variational Quantum Eigensolver) | Track C | `track_C_quantum/code/` | Planned |
 | | Parameterized Quantum Circuits (PQCs) & QNNs | Track C / I | `track_C_quantum/code/` | Planned |
 | | Parameter-shift rule & SPSA | Track C | `track_C_quantum/code/` | Planned |

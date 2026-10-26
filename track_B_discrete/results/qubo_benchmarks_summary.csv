@@ -1,0 +1,4 @@
+Graph,Nodes,Edges,Exact_Cut,Ground_Energy,SA_Mean_Energy,SA_Std_Energy,SA_Success_Rate,SA_Time_ms
+Graph_5Ring,5,5,4.0,-4.0,-4.0,0.0,10/10,3.22
+Graph_8Cube,8,12,12.0,-12.0,-12.0,0.0,10/10,3.48
+Graph_12ER,12,18,16.0,-16.0,-16.0,0.0,10/10,3.60
