@@ -1,0 +1,17 @@
+Method,Metric,Mean,Std,Min,Max
+Random,is_feasible_int,0.0000,0.0000,0.0000,0.0000
+Random,student_clashes,218.1000,35.4131,162.0000,287.0000
+Random,capacity_violations,0.1000,0.3000,0.0000,1.0000
+Random,back_to_back_count,348.5000,53.6046,247.0000,445.0000
+Random,three_plus_day_count,146.4000,26.0776,109.0000,195.0000
+Random,slots_used,11.8000,0.6000,10.0000,12.0000
+Random,total_penalty,10864.0000,1767.5135,7980.0000,14260.0000
+Random,runtime_ms,0.0140,0.0029,0.0121,0.0223
+FirstFit,is_feasible_int,0.0000,0.0000,0.0000,0.0000
+FirstFit,student_clashes,120.2000,9.0532,105.0000,134.0000
+FirstFit,capacity_violations,0.0000,0.0000,0.0000,0.0000
+FirstFit,back_to_back_count,364.7000,23.8162,326.0000,409.0000
+FirstFit,three_plus_day_count,113.5000,10.4809,92.0000,126.0000
+FirstFit,slots_used,12.0000,0.0000,12.0000,12.0000
+FirstFit,total_penalty,9382.0000,712.8085,7920.0000,10150.0000
+FirstFit,runtime_ms,0.4526,0.2437,0.3027,1.0583

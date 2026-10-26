@@ -1,0 +1,6 @@
+Test_Name,Runtime_ms,Lines_Covered
+test_feasible_metrics,0.813,86
+test_clash_detection,0.922,87
+test_capacity_violation,0.418,92
+test_three_plus_detection,0.778,91
+test_incomplete_assignment,0.477,84

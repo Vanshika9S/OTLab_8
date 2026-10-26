@@ -1,0 +1,9 @@
+Query,Cold_Latency_ms,Warm_Mean_ms,Warm_Std_ms,Plan_Steps
+Q1_Pricing_Summary,2.773,2.839,0.603,2
+Q3_Shipping_Priority,3.481,0.752,0.347,5
+Q5_Local_Supplier_Volume,1.808,0.861,0.314,8
+Q6_Forecasting_Revenue_Change,0.682,0.262,0.04,1
+Q9_Product_Type_Profit,5.515,3.164,1.064,7
+Q10_Returned_Item_Reporting,1.708,0.575,0.131,6
+Q12_Shipping_Modes_Order_Priority,0.798,0.317,0.027,3
+Q14_Promotion_Effect,0.785,0.323,0.021,2

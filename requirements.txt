@@ -1,0 +1,25 @@
+# Core Numerical & Scientific Computing
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+pandas>=2.0.0
+
+# Mathematical Optimization & Combinatorics
+pulp>=2.7.0
+cvxpy>=1.3.0
+networkx>=3.0
+
+# Machine Learning & Gradient Optimization (Tracks A, D, J)
+torch>=2.0.0
+
+# Quantum Computing & Simulation (Tracks C, I)
+qiskit>=1.0.0
+qiskit-aer>=0.14.0
+pennylane>=0.35.0
+
+# System, Database & Profiling Utilities (Tracks D, H, J)
+psutil>=5.9.0
+duckdb>=0.9.0
+
+# Testing & Quality Assurance
+pytest>=7.3.0
