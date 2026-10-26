@@ -38,3 +38,6 @@ track_G_xv6/code/fs.img
 *.token
 credentials.json
 .env.local
+
+# Windows directory junctions
+track_C_quantum_opt

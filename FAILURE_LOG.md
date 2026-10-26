@@ -54,6 +54,7 @@ Each entry must document:
   ```
 - **Key Lesson**: Console outputs containing Unicode symbols, box-drawing characters, or math symbols must always guard for Windows legacy codepages or force UTF-8 stdout reconfiguration.
 
+
 ---
 
 ## Case 3: Missing Inter-Table Join Population in Synthetic Database Generator
@@ -67,3 +68,25 @@ Each entry must document:
 - **Root Cause**: The AI generated data for the principal entities but missed the intermediate associative table `partsupp`, assuming standard lineitems would be sufficient.
 - **Verified Fix**: Implemented explicit relational generation of `partsupp` linking 2–4 suppliers per part with synthetic `availqty` and `supplycost`.
 - **Key Lesson**: Always write unit tests verifying table row counts and non-empty query result sets when generating synthetic database benchmarks. Do not assume joins will succeed without explicit associative records.
+
+---
+
+## Case 4: Global Pytest Module Collection Failure across Multi-Track Repositories
+
+- **Track & Component**: Root Test Harness (`pytest` test collection across Tracks A–J)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Environment & Test Harness Incompatibility]`
+- **Description & Output**: Running `pytest -v` from the repository root produced fatal collection errors:
+  `ERROR collecting track_A_continuous/tests/test_continuous_optimizers.py`
+  `ModuleNotFoundError: No module named 'track_A_continuous'`
+  `ERROR collecting track_B_discrete/tests/test_discrete_solvers.py`
+  `ModuleNotFoundError: No module named 'track_B_discrete'`
+- **Root Cause**: When pytest discovers test files in subdirectories, it imports each test module into Python's module cache. Because test files had `from track_A_continuous.code... import ...` at the top of the file *before* or without a root-level hook, Python could not resolve the package root unless `PYTHONPATH=.` was passed in the environment.
+- **Verified Fix**: Created a root-level [`conftest.py`](./conftest.py) and [`pytest.ini`](./pytest.ini):
+  ```ini
+  [pytest]
+  pythonpath = .
+  testpaths = track_A_continuous/tests track_B_discrete/tests track_C_quantum/tests track_E_case_study/tests track_H_dbms/tests track_J_software_eng/tests
+  ```
+- **Key Lesson**: In multi-module monorepos, individual script bootstrapping (`sys.path.insert`) is necessary for direct script runs, but pytest requires a root `conftest.py` or `pytest.ini` configuration to guarantee consistent cross-platform module discovery.
+

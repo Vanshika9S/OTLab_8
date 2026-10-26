@@ -1,0 +1,16 @@
+Graph,Nodes,Solver,Type,Max_Cut_Obtained,Approximation_Ratio,Evaluations,Runtime_ms
+Graph_5Ring,5,Classical Brute Force,Exact Classical,4.0,1.0,32.0,0.05
+Graph_5Ring,5,Classical Simulated Annealing,Heuristic Classical,4.0,1.0,1000.0,3.22
+Graph_5Ring,5,QAOA (p=1),Variational Quantum (Simulated),3.75,0.9375,44.9,363.36
+Graph_5Ring,5,QAOA (p=2),Variational Quantum (Simulated),3.9779,0.9945,205.4,1969.73
+Graph_5Ring,5,QAOA (p=3),Variational Quantum (Simulated),3.9998,1.0,211.3,2110.0
+Graph_8Cube,8,Classical Brute Force,Exact Classical,12.0,1.0,256.0,1.6
+Graph_8Cube,8,Classical Simulated Annealing,Heuristic Classical,12.0,1.0,1000.0,3.48
+Graph_8Cube,8,QAOA (p=1),Variational Quantum (Simulated),8.0785,0.6732,41.4,416.02
+Graph_8Cube,8,QAOA (p=2),Variational Quantum (Simulated),8.9441,0.7453,166.6,1734.44
+Graph_8Cube,8,QAOA (p=3),Variational Quantum (Simulated),9.5748,0.7979,247.0,3170.24
+Graph_12ER,12,Classical Brute Force,Exact Classical,16.0,1.0,4096.0,45.0
+Graph_12ER,12,Classical Simulated Annealing,Heuristic Classical,16.0,1.0,1000.0,3.6
+Graph_12ER,12,QAOA (p=1),Variational Quantum (Simulated),12.1177,0.7574,40.6,224.64
+Graph_12ER,12,QAOA (p=2),Variational Quantum (Simulated),14.0118,0.8757,188.2,1137.14
+Graph_12ER,12,QAOA (p=3),Variational Quantum (Simulated),14.5285,0.908,250.0,2274.0
