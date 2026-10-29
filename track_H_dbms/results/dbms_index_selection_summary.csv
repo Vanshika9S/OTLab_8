@@ -1,0 +1,8 @@
+Configuration,Method,Budget_KB,Indices_Count,Indices_List,Storage_KB,Total_Cold_Latency_ms,Total_Warm_Latency_ms,Workload_Speedup_Factor,Throughput_QPS,Results_Verified_Identical
+Default_No_Secondary_Indexes,default,0.0,0,,6360.0,417.69,410.41,1.43,19.5,True
+Greedy_Budget_600KB,greedy,600.0,5,idx_supplier_nationkey;idx_customer_nationkey;idx_customer_mktsegment;idx_partsupp_suppkey;idx_orders_custkey_date,6360.0,756.42,899.72,0.65,8.9,True
+ILP_Exact_Budget_600KB,ilp,600.0,1,idx_supplier_nationkey,6360.0,509.83,534.3,1.1,15.0,True
+DP_Knapsack_Budget_600KB,dp,600.0,5,idx_orders_custkey_date;idx_customer_mktsegment;idx_partsupp_suppkey;idx_supplier_nationkey;idx_customer_nationkey,6360.0,475.97,465.62,1.26,17.2,True
+Greedy_Budget_1200KB,greedy,1200.0,6,idx_supplier_nationkey;idx_customer_nationkey;idx_customer_mktsegment;idx_partsupp_suppkey;idx_orders_custkey_date;idx_lineitem_orderkey_ship,6360.0,504.33,514.23,1.14,15.6,True
+ILP_Exact_Budget_1200KB,ilp,1200.0,1,idx_supplier_nationkey,6360.0,438.1,369.62,1.59,21.6,True
+DP_Knapsack_Budget_1200KB,dp,1200.0,6,idx_orders_custkey_date;idx_lineitem_orderkey_ship;idx_customer_mktsegment;idx_partsupp_suppkey;idx_supplier_nationkey;idx_customer_nationkey,6360.0,452.07,381.8,1.54,21.0,True

@@ -117,6 +117,21 @@ Each entry must document:
   $$\text{IN}[B] = \text{USE}[B] \cup (\text{OUT}[B] \setminus \text{DEF}[B])$$
   $$\text{OUT}[B] = \bigcup_{S \in \text{SUCC}[B]} \text{IN}[S]$$
   Iterating until convergence ensured variables live across loop back-edges are preserved. LICM was also hardened to verify all loop-carried dependencies before hoisting.
-- **Key Lesson**: Compiler optimizations across control structures cannot rely on linear heuristics. Any transformation involving liveness (DCE), common subexpressions (CSE), or code motion (LICM) must operate over a mathematically rigorous CFG with fixed-point iterative dataflow equations that explicitly model loop back-edges.
+---
+
+## Case 7: SQLite Index Storage Introspection Failure via Missing dbstat Virtual Table
+
+- **Track & Component**: Track H (DBMS Optimization — `index_optimizer.py`)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Platform / Environment Introspection Failure]`
+- **Description & Output**: When profiling candidate index storage costs, querying SQLite's standard storage diagnostic table via `SELECT sum(pgsize) FROM dbstat WHERE name = ?` threw:
+  `sqlite3.OperationalError: no such table: dbstat`.
+- **Root Cause**: The `dbstat` virtual table is an optional SQLite extension requiring compile-time flag `-DSQLITE_ENABLE_DBSTAT_VTAB=1`. Standard official CPython Windows binary distributions omit this flag, causing database storage introspection queries to fail catastrophically.
+- **Verified Fix**: Replaced the `dbstat` dependency with an engine-agnostic page differential tracking protocol using standard SQLite pragmas:
+  $$\Delta \text{Pages} = (\text{PageCount}_{\text{after}} - \text{PageCount}_{\text{before}}) + (\text{Freelist}_{\text{before}} - \text{Freelist}_{\text{after}})$$
+  $$\text{Storage (Bytes)} = \Delta \text{Pages} \times \text{PageSize}$$
+  coupled with `VACUUM` and explicit transaction commits (`conn.commit()`) between candidates to guarantee isolated, deterministic byte-level accounting.
+- **Key Lesson**: Never rely on engine-specific optional diagnostic extensions (`dbstat`, `pg_buffercache`) across multi-platform test environments. Always use portable low-level page and freelist accounting pragmas.
+
 
 

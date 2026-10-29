@@ -1,0 +1,4 @@
+Query,Tables_Count,Default_Syntactic_Order,DP_Optimal_Left_Deep_Order,Estimated_DP_Cost
+Q3_Join_3_Tables,3,customer -> orders -> lineitem,customer -> orders -> lineitem,13512.6
+Q5_Join_6_Tables,6,customer -> orders -> lineitem -> supplier -> nation -> region,region -> nation -> supplier -> customer -> orders -> lineitem,11010.1
+Q9_Join_6_Tables,6,part -> supplier -> lineitem -> partsupp -> orders -> nation,nation -> supplier -> part -> partsupp -> orders -> lineitem,12992.6

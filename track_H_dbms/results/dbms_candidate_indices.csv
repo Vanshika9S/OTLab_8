@@ -1,0 +1,13 @@
+Index_ID,Table,Columns,Size_KB,Total_Benefit_ms,Benefit_Size_Ratio,Targeted_Queries
+idx_lineitem_shipdate,lineitem,l_shipdate,532.0,21.733,0.0409,Q1_Pricing_Summary;Q6_Forecasting_Revenue_Change;Q14_Promotion_Effect
+idx_lineitem_q6_covering,lineitem,l_shipdate;l_discount;l_quantity;l_extendedprice,1128.0,27.712,0.0246,Q6_Forecasting_Revenue_Change;Q1_Pricing_Summary
+idx_orders_custkey_date,orders,o_custkey;o_orderdate;o_orderkey,356.0,106.835,0.3001,Q3_Shipping_Priority;Q5_Local_Supplier_Volume;Q10_Returned_Item_Reporting
+idx_orders_date,orders,o_orderdate;o_custkey,312.0,72.872,0.2336,Q3_Shipping_Priority;Q10_Returned_Item_Reporting
+idx_lineitem_orderkey_ship,lineitem,l_orderkey;l_shipdate,624.0,89.123,0.1428,Q3_Shipping_Priority;Q5_Local_Supplier_Volume;Q9_Product_Type_Profit;Q10_Returned_Item_Reporting;Q12_Shipping_Modes_Order_Priority
+idx_customer_mktsegment,customer,c_mktsegment;c_custkey,36.0,50.086,1.3913,Q3_Shipping_Priority
+idx_lineitem_receipt_shipmode,lineitem,l_receiptdate;l_shipmode;l_orderkey,784.0,10.442,0.0133,Q12_Shipping_Modes_Order_Priority
+idx_lineitem_partkey_suppkey,lineitem,l_partkey;l_suppkey,356.0,44.822,0.1259,Q9_Product_Type_Profit;Q14_Promotion_Effect
+idx_partsupp_suppkey,partsupp,ps_suppkey;ps_partkey,76.0,27.119,0.3568,Q9_Product_Type_Profit
+idx_supplier_nationkey,supplier,s_nationkey;s_suppkey,4.0,80.397,20.0991,Q5_Local_Supplier_Volume;Q9_Product_Type_Profit
+idx_customer_nationkey,customer,c_nationkey;c_custkey,24.0,59.294,2.4706,Q5_Local_Supplier_Volume;Q10_Returned_Item_Reporting
+idx_lineitem_returnflag,lineitem,l_returnflag;l_orderkey,360.0,21.577,0.0599,Q10_Returned_Item_Reporting

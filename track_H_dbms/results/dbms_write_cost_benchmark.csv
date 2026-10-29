@@ -1,0 +1,6 @@
+configuration,num_secondary_indexes,batch_size,insert_latency_mean_ms,insert_latency_std_ms,throughput_rows_per_sec,write_amplification_factor
+Config_0_No_Secondary_Indexes,0,3000,34.77,3.24,86280.9,1.0
+Config_1_Single_Index,1,3000,58.53,26.21,51256.1,1.68
+Config_2_Two_Indexes,2,3000,82.17,14.65,36511.7,2.36
+Config_3_Three_Indexes,3,3000,110.87,51.19,27059.2,3.19
+Config_5_Five_Indexes,5,3000,223.08,97.68,13448.3,6.42
