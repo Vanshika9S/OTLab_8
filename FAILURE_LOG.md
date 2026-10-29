@@ -131,7 +131,18 @@ Each entry must document:
   $$\Delta \text{Pages} = (\text{PageCount}_{\text{after}} - \text{PageCount}_{\text{before}}) + (\text{Freelist}_{\text{before}} - \text{Freelist}_{\text{after}})$$
   $$\text{Storage (Bytes)} = \Delta \text{Pages} \times \text{PageSize}$$
   coupled with `VACUUM` and explicit transaction commits (`conn.commit()`) between candidates to guarantee isolated, deterministic byte-level accounting.
-- **Key Lesson**: Never rely on engine-specific optional diagnostic extensions (`dbstat`, `pg_buffercache`) across multi-platform test environments. Always use portable low-level page and freelist accounting pragmas.
+---
+
+## Case 8: Dense Matrix Memory Explosion in ILP Constraint Generation for Conflict Graphs
+
+- **Track & Component**: Track E (Timetabling Optimization — `optimizers.py`)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Inefficiency / Memory Explosion / Scalability Failure]`
+- **Description & Output**: During the execution of the ILP timetabling benchmark on the primary instance (40 courses, 740 conflicts, 12 slots), Python processes locked the CPU in heavy garbage collection and memory allocation loops, taking $> 30$ seconds per solve before timing out.
+- **Root Cause**: The constraint generation routine constructed a dense NumPy array `np.zeros(total_vars)` for each of the $8,932$ linear constraints. Across $9,372$ variables (including continuous conflict slack variables), this instantiated an $8,932 \times 9,372$ dense `float64` matrix consuming over $670\text{ MB}$ of RAM per single ILP invocation ($> 6.7\text{ GB}$ across 10 repeated trials). Because only $\sim 27,000$ matrix entries were non-zero (sparsity $> 99.96\%$), allocating and passing dense arrays to HiGHS caused catastrophic allocation latency.
+- **Verified Fix**: Replaced dense matrix accumulation with `scipy.sparse.coo_matrix` converted to `csr_matrix`. Row, column, and coefficient values are accumulated into lightweight Python lists and assembled in $15.7\text{ ms}$ ($< 1\text{ MB}$ footprint), enabling HiGHS to solve or prove infeasibility in $< 900\text{ ms}$.
+- **Key Lesson**: In discrete optimization models over dense graphs, never construct dense NumPy arrays for constraint matrices. Always construct sparse matrices (`scipy.sparse.csr_matrix` / `coo_matrix`) when non-zero coefficient density is below $5\%$.
+
 
 
 

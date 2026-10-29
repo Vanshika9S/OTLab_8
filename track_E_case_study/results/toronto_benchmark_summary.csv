@@ -1,0 +1,3 @@
+Instance,Courses,Students,Slots,Method,Feasible,Clashes,Capacity_Violations,Back_to_Back,Three_Plus_Day,Total_Penalty,Runtime_ms
+toronto_carter_sample,30,200,18,DSATUR,True,0,0,88,5,1220.0,5.76
+toronto_carter_sample,30,200,18,Parallel_SA,True,0,0,83,0,920.0,2602.31

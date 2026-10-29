@@ -1,0 +1,5 @@
+Worker_Cores,Restarts_Evaluated,Wall_Clock_ms,Parallel_Speedup_Factor,Best_Penalty,Best_Clashes,Restart_Costs_Mean,Restart_Costs_Std
+1,1,3638.39,1.0,8020.0,78,788020.0,0.0
+2,2,3912.71,1.86,8020.0,78,812845.0,24825.0
+4,4,5896.57,2.47,8210.0,72,798065.0,45201.95
+6,6,7604.58,2.87,8210.0,72,801406.67,37642.4

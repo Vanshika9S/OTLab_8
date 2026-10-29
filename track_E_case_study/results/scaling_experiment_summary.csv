@@ -1,0 +1,5 @@
+Instance,Students,Courses,Conflict_Density,DSATUR_Penalty,DSATUR_Runtime_ms,DSATUR_Feasible,ILP_Penalty,ILP_Runtime_ms,ILP_Feasible,Parallel_SA_Penalty,Parallel_SA_Runtime_ms,Parallel_SA_Feasible
+100_Students,100,40,0.6936,2430.0,10.7,False,2430.0,2064.19,False,2470.0,3540.5,False
+300_Students,300,40,0.9526,9070.0,10.54,False,9070.0,228.95,False,7660.0,4185.27,False
+1000_Students,1000,40,1.0,30320.0,12.88,False,30320.0,199.14,False,29530.0,9903.82,False
+3000_Students,3000,40,1.0,105910.0,11.98,False,105910.0,140.57,False,93590.0,16904.42,False
