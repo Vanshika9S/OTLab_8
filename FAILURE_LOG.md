@@ -142,6 +142,17 @@ Each entry must document:
 - **Root Cause**: The constraint generation routine constructed a dense NumPy array `np.zeros(total_vars)` for each of the $8,932$ linear constraints. Across $9,372$ variables (including continuous conflict slack variables), this instantiated an $8,932 \times 9,372$ dense `float64` matrix consuming over $670\text{ MB}$ of RAM per single ILP invocation ($> 6.7\text{ GB}$ across 10 repeated trials). Because only $\sim 27,000$ matrix entries were non-zero (sparsity $> 99.96\%$), allocating and passing dense arrays to HiGHS caused catastrophic allocation latency.
 - **Verified Fix**: Replaced dense matrix accumulation with `scipy.sparse.coo_matrix` converted to `csr_matrix`. Row, column, and coefficient values are accumulated into lightweight Python lists and assembled in $15.7\text{ ms}$ ($< 1\text{ MB}$ footprint), enabling HiGHS to solve or prove infeasibility in $< 900\text{ ms}$.
 - **Key Lesson**: In discrete optimization models over dense graphs, never construct dense NumPy arrays for constraint matrices. Always construct sparse matrices (`scipy.sparse.csr_matrix` / `coo_matrix`) when non-zero coefficient density is below $5\%$.
+---
+
+## Case 9: Grover Amplitude Over-Rotation from Naive Rounding in Iteration Formula
+
+- **Track & Component**: Track I (Quantum Algorithms — `quantum_algorithms.py`)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Algorithmic Logic Failure / State Over-Rotation]`
+- **Description & Output**: During unit testing of Grover's search on a 2-qubit database ($n=2, N=4$) for marked target `'10'`, the algorithm completely failed to amplify the target state, yielding an almost uniform probability distribution `{'10': 264, '11': 234, '00': 257, '01': 269}` with empirical success probability only $\sim 25.8\%$.
+- **Root Cause**: The optimal Grover iteration formula was initially coded as `int(round((pi / 4.0) * sqrt(N)))`. For $N=4$, $\frac{\pi}{4}\sqrt{4} = \frac{\pi}{2} \approx 1.5708$, which `round()` rounded up to $R = 2$ iterations. Because the initial state angle is $\theta = \arcsin(1/\sqrt{4}) = 30^\circ$, applying $R = 1$ rotation reaches $(2 \times 1 + 1) \times 30^\circ = 90^\circ$ ($\sin^2(90^\circ) = 1.0$, exact $100\%$ target recovery). Applying $R = 2$ rotations over-rotates the statevector to $(2 \times 2 + 1) \times 30^\circ = 150^\circ$, where $\sin^2(150^\circ) = (0.5)^2 = 0.25$, destroying quantum amplification.
+- **Verified Fix**: Replaced `round()` with `int(math.floor((math.pi / 4.0) * math.sqrt(self.N)))`. This sets $R = 1$ for $N=4$, restoring $100\%$ target recovery probability, while properly setting $R = 2$ for $N=8$, $R = 3$ for $N=16$, and $R = 12$ for $N=256$.
+- **Key Lesson**: In geometric quantum amplitude amplification, statevector rotations are discrete steps along a 2D subspace circle. Never use naive symmetric rounding for quantum iteration counts without verifying that the rotation angle $(2R+1)\arcsin(1/\sqrt{N})$ does not overshoot the target orthogonal axis ($\pi/2$).
 
 
 

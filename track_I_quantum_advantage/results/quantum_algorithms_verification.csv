@@ -1,0 +1,11 @@
+algorithm,input_config,expected_output,measured_output,fidelity_or_prob,verified_correct,implementation_type
+Deutsch-Jozsa (Constant),"n=3, f(x)=0",constant,constant,1.0,True,Hand-crafted Gate-by-Gate
+Deutsch-Jozsa (Balanced Parity),"n=3, f(x)=x0^x1^x2",balanced,balanced,1.0,True,Hand-crafted Gate-by-Gate
+Deutsch-Jozsa (NumPy Ref),"n=3, f(x)=x0^x1^x2",balanced,balanced,0.7500000000000002,True,Pure NumPy Statevector
+Bernstein-Vazirani,secret='1101',1101,1101,1.0,True,Hand-crafted Gate-by-Gate
+Grover's Search,"n=3, target='101', N=8",101,101,0.95263671875,True,Hand-crafted Oracle & Diffuser
+Quantum Fourier Transform (QFT),n=3 qubits (N=8),Exact DFT Matrix,Frobenius Err=5.80e-15,1.0,True,Hand-crafted CP Network
+Quantum Phase Estimation (T Gate),"t=3 counting qubits, phase=1/8",0.125,0.1250,1.0,True,Hand-crafted Inverse QFT
+Quantum Phase Estimation (S Gate),"t=3 counting qubits, phase=1/4",0.250,0.2500,1.0,True,Hand-crafted Inverse QFT
+Shor's Algorithm (Small N=15),"N=15, a=7 (coprime)","[3, 5]","[3, 5]",1.0,True,Modular Unitary + Inverse QFT
+Quantum Annealing Minor Embedding,K_16 Complete Graph on Chimera,Physical Qubits O(n^2),76 physical qubits,4.75,True,Minor Embedding Graph Model
