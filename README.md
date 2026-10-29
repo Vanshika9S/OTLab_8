@@ -103,6 +103,7 @@ Per Section 8 of the assignment specification, every AI tool and model version u
 | Gemini 3.8 Flash (High) | Track H | 2026-10-28 | Day 10: DBMS index selection (Knapsack/ILP/DP), System R join-order DP, write-cost penalty |
 | Gemini 3.8 Flash (High) | Track E | 2026-10-29 | Day 11: University exam timetabling full optimization (DSATUR, exact HiGHS ILP, parallel SA 6 cores, Toronto benchmark, scaling & sensitivity) |
 | Gemini 3.8 Flash (High) | Track I | 2026-10-29 | Day 12: Quantum algorithms suite (7 algos, hand-crafted circuits), NISQ noise degradation, QML vs classical (10 seeds), Grover scaling, honest negative analysis |
+| Gemini 3.8 Flash (High) | Track J & Validation | 2026-10-30 | Day 13: Test-suite minimization & prioritization via Greedy and HiGHS ILP Set Cover, mutation testing (10 mutants), cross-track test audit (74/74 passing) |
 | *(Pending user inputs for other tools: Claude, Copilot, ChatGPT, etc.)* | | | |
 
 ---
@@ -124,12 +125,12 @@ Per Section 5 of [`ASSIGNMENT_SPEC.md`](./ASSIGNMENT_SPEC.md), every taught algo
 | | Curvature Approximations (Fisher, diagonal/low-rank, HVP) | Track A | `track_A_continuous/code/neural_net_backprop.py` | **Complete**: Directional HVP, empirical Fisher FIM, diagonal & truncated low-rank SVD |
 | | Convergence analysis (convex, strongly convex, non-convex) | Track A | `track_A_continuous/REPORT.md` | **Complete**: Convergence rate analysis; documented Newton saddle trap |
 | | Step-size, optimizer tuning, noisy objectives | Track A | `track_A_continuous/code/run_benchmarks.py` | **Complete**: 10-seed repeated runs on noisy objective; step-size sweep ($\eta \in [10^{-4}, 2.0]$) |
-| **Discrete Optimization** | Greedy selection methods | Track B | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: Value-to-weight density ratio heuristic ($O(N \log N)$) |
-| | Integer Linear Programming (ILP) | Track B / E | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: HiGHS branch-and-cut solving 0-1 knapsack |
+| **Discrete Optimization** | Greedy selection methods | Track B / J | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: Value-to-weight density ratio heuristic ($O(N \log N)$) |
+| | Integer Linear Programming (ILP) | Track B / E / J | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: HiGHS branch-and-cut solving 0-1 knapsack |
 | | Branch-and-Bound | Track B | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: Hand-written B&B with fractional relaxation bounds (0.25 ms on N=20) |
-| | Dynamic Programming | Track B / F | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: 2D tabulation $O(N \cdot W)$ with subset backtracking |
+| | Dynamic Programming | Track B / F / H | `track_B_discrete/code/knapsack_solvers.py` | **Complete**: 2D tabulation $O(N \cdot W)$ with subset backtracking |
 | | Feature selection / combinatorial applications | Track B | `track_B_discrete/code/qubo_ising.py` | **Complete**: Cardinality constraint penalty formulation verified |
-| | QUBO & Ising formulation with penalty terms | Track B / C | `track_B_discrete/code/qubo_ising.py` | **Complete**: Max-Cut QUBO & Ising derived; 10-seed SA solved; exported for Track C |
+| | QUBO & Ising formulation with penalty terms | Track B / C / I | `track_B_discrete/code/qubo_ising.py` | **Complete**: Max-Cut QUBO & Ising derived; 10-seed SA solved; exported for Track C |
 | **Quantum Optimization** | QAOA (solving Track B QUBO / Max-Cut) | Track C | `track_C_quantum/code/qaoa_maxcut.py` | **Complete**: Multi-depth QAOA ($p=1..4$) evaluated on 5-qubit ring |
 | | VQE (Variational Quantum Eigensolver) | Track C | `track_C_quantum/code/vqe_solver.py` | **Complete**: Ground-state energy verified on H2 molecular Hamiltonian |
 | | Parameterized Quantum Circuits (PQCs) & QNNs | Track C / I | `track_C_quantum/code/gradients_and_qnn.py` | **Complete**: Variational angle encoding ansatz trained on non-linear data |
@@ -150,7 +151,7 @@ Per Section 5 of [`ASSIGNMENT_SPEC.md`](./ASSIGNMENT_SPEC.md), every taught algo
 | **DBMS Optimization** | TPC-H Index Selection & Join-Order Optimization | Track H | `track_H_dbms/code/index_optimizer.py` | **Complete**: Knapsack/ILP index selection, System R join-order DP, write-cost amplification |
 | **Quantum Algorithms** | Deutsch-Jozsa, Bernstein-Vazirani, Grover, QFT, QPE, Shor | Track I | `track_I_quantum_advantage/code/quantum_algorithms.py` | **Complete**: 7 algorithms verified on ground truths; 2 hand-crafted circuits |
 | | Variational classifier / Quantum Kernel vs classical model | Track I | `track_I_quantum_advantage/code/qml_benchmark.py` | **Complete**: 10 seeds, VQC vs RBF SVM / MLP / LogReg (honest negative result) |
-| **Software Engineering** | Test-Suite Profiler & Coverage Matrix Instrumentation | Track J | `track_J_software_eng/code/baseline_profiler.py` | **Complete**: Runtime & line coverage matrix collector operational |
+| **Software Engineering** | Test-Suite Minimization & Prioritization via Set Cover | Track J | `track_J_software_eng/code/test_suite_optimizer.py` | **Complete**: Greedy & HiGHS ILP Set Cover ($34.4\%$ time saved, 100% coverage & mutation score preserved) |
 
 ---
 

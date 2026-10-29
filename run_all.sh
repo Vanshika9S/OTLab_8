@@ -10,7 +10,20 @@ echo " Date: $(date)"
 echo " Environment: $(uname -s 2>/dev/null || echo Windows/PowerShell)"
 echo "======================================================================"
 
-python3 -m pytest -v --tb=short track_*/tests/ || python -m pytest -v --tb=short track_*/tests/
+if command -v python.exe >/dev/null 2>&1; then
+    python.exe -m pytest -v --tb=short
+elif command -v pytest >/dev/null 2>&1; then
+    pytest -v --tb=short
+elif command -v py >/dev/null 2>&1; then
+    py -3 -m pytest -v --tb=short
+elif command -v python >/dev/null 2>&1; then
+    python -m pytest -v --tb=short
+elif command -v python3 >/dev/null 2>&1; then
+    python3 -m pytest -v --tb=short
+else
+    echo "Error: Neither python nor pytest found in PATH." >&2
+    exit 1
+fi
 
 echo "======================================================================"
 echo " All track test suites executed successfully."

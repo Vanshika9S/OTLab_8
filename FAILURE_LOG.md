@@ -153,6 +153,19 @@ Each entry must document:
 - **Root Cause**: The optimal Grover iteration formula was initially coded as `int(round((pi / 4.0) * sqrt(N)))`. For $N=4$, $\frac{\pi}{4}\sqrt{4} = \frac{\pi}{2} \approx 1.5708$, which `round()` rounded up to $R = 2$ iterations. Because the initial state angle is $\theta = \arcsin(1/\sqrt{4}) = 30^\circ$, applying $R = 1$ rotation reaches $(2 \times 1 + 1) \times 30^\circ = 90^\circ$ ($\sin^2(90^\circ) = 1.0$, exact $100\%$ target recovery). Applying $R = 2$ rotations over-rotates the statevector to $(2 \times 2 + 1) \times 30^\circ = 150^\circ$, where $\sin^2(150^\circ) = (0.5)^2 = 0.25$, destroying quantum amplification.
 - **Verified Fix**: Replaced `round()` with `int(math.floor((math.pi / 4.0) * math.sqrt(self.N)))`. This sets $R = 1$ for $N=4$, restoring $100\%$ target recovery probability, while properly setting $R = 2$ for $N=8$, $R = 3$ for $N=16$, and $R = 12$ for $N=256$.
 - **Key Lesson**: In geometric quantum amplitude amplification, statevector rotations are discrete steps along a 2D subspace circle. Never use naive symmetric rounding for quantum iteration counts without verifying that the rotation angle $(2R+1)\arcsin(1/\sqrt{N})$ does not overshoot the target orthogonal axis ($\pi/2$).
+---
+
+## Case 10: Dictionary vs String ID Membership Comparison in Test-Suite Mutation Audit
+
+- **Track & Component**: Track J (Software Engineering Optimization — `run_track_j_benchmarks.py`)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Type Mismatch / Silent Logic Failure]`
+- **Description & Output**: During the mutation testing audit of minimized test suites, `mutation_testing_results.csv` recorded `False` across all 10 injected mutants for all three suites (Full, Greedy, and ILP), despite the optimizer engine reporting a 100% mutation score ($10/10$ mutants killed).
+- **Root Cause**: In `audit_mutation_testing`, the mutant kill condition was written as:
+  `killed = any(t in selected_tests for t in model.tests_catalog if not targets.isdisjoint(t["statements"]))`
+  Here, `t` iterated over dictionary objects in `model.tests_catalog`, while `selected_tests` was a list of test string identifiers (`["test_01", "test_02", ...]`). Because a Python dictionary object never matches a string (`dict != str`), the membership check `t in selected_tests` silently evaluated to `False` for every mutant without raising an exception.
+- **Verified Fix**: Modified the check to compare string keys: `t["id"] in selected_tests`. The audit immediately evaluated to `True` across all 10 mutants, accurately reflecting that all mutants are caught by the selected suites.
+- **Key Lesson**: In Python list comprehension and generator membership tests (`x in y`), ensure type homogeneity between iterator elements and collection elements. Silent type mismatches in boolean filters cause catastrophic reporting regressions without producing runtime tracebacks.
 
 
 

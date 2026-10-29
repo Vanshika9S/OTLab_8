@@ -1,0 +1,4 @@
+method,num_selected,suite_runtime_ms,runtime_saved_pct,statements_covered,coverage_pct,mutants_killed,mutation_score_pct,solver_overhead_ms
+Naive Full Suite,25,159.17,0.0,560,100.0,10,100.0,0.0011
+Greedy Weighted Set Cover,21,120.52,24.28,560,100.0,10,100.0,0.616
+Exact ILP Set Cover (HiGHS),18,104.42,34.4,560,100.0,10,100.0,8.2329

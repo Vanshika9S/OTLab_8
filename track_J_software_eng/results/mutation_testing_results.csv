@@ -1,0 +1,11 @@
+mutant_id,description,target_statements,killed_by_full_suite,killed_by_greedy_suite,killed_by_ilp_suite
+mutant_01_invert_clash_condition,Inverted clash detection from > 1 to >= 1,"[42, 43]",True,True,True
+mutant_02_corrupt_b2b_adjacency,Altered adjacent slot check from diff==1 to diff>1,"[62, 63]",True,True,True
+mutant_03_off_by_one_day_partition,Off-by-one in slot to day integer division,"[56, 57]",True,True,True
+mutant_04_capacity_threshold_mutation,Room capacity overflow check flipped from > cap to >= cap,"[168, 169]",True,True,True
+mutant_05_soft_penalty_weight_zeroed,Zeroed alpha_b2b penalty weight in objective scalarization,"[182, 183]",True,True,True
+mutant_06_dsatur_tie_breaking_corrupt,Reversed saturation degree priority queue ordering,"[245, 246]",True,True,True
+mutant_07_dsatur_soft_lookahead_bypass,Bypassed soft-penalty slot lookahead heuristic,"[288, 289]",True,True,True
+mutant_08_ilp_slack_penalty_sign_flip,Flipped conflict slack penalty sign in ILP cost vector,"[395, 396]",True,True,True
+mutant_09_kempe_chain_connectivity_corrupt,Disabled Kempe-chain swap symmetry in SA local search,"[525, 526]",True,True,True
+mutant_10_parallel_sa_aggregation_min_max_flip,Replaced min(penalties) with max(penalties) in multi-worker merge,"[592, 593]",True,True,True
