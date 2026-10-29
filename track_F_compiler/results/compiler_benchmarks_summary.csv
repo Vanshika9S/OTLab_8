@@ -1,0 +1,6 @@
+Program,Output,Output_Identical,Unopt_IR_Size,Opt_IR_Size,Size_Reduction_Percent,Unopt_Cycles,Opt_Cycles,Cycle_Speedup_Factor,Unopt_Runtime_ms,Opt_Runtime_ms,Compile_Time_ms,Optimization_Time_ms
+Prog1_ConstFold_DCE,[100],True,24,7,70.83,19,4,4.75,0.059,0.012,0.656,1.023
+Prog2_CSE_StrengthRed,[265],True,19,1,94.74,19,1,19.0,0.049,0.006,0.449,0.571
+Prog3_LICM_Loop,[4800],True,26,15,42.31,291,208,1.4,0.389,0.255,0.562,1.433
+Prog4_Fibonacci_Sequence,[610],True,21,16,23.81,162,143,1.13,0.214,0.153,0.446,0.853
+Prog5_Nested_Conditionals,[356],True,29,22,24.14,316,247,1.28,0.346,0.278,0.535,1.232

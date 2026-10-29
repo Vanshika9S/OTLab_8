@@ -1,0 +1,6 @@
+Edge_Case,Expected_Output,Optimized_Output,Output_Identical,Status
+EdgeCase_SideEffectsPreserved,[100],[100],True,PASSED
+EdgeCase_LoopVariableMutation,[10],[10],True,PASSED
+EdgeCase_VariableReassignment,[30],[30],True,PASSED
+EdgeCase_UnreachableBranchPruning,[42],[42],True,PASSED
+EdgeCase_ZeroIdentities,[246],[246],True,PASSED

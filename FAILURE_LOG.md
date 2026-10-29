@@ -102,5 +102,21 @@ Each entry must document:
   `file submodular_opt.py:87: fixture 'obj' not found`
 - **Root Cause**: The library function was named `def test_diminishing_returns(obj, num_trials=500, ...)`. When imported into the test module via `from track_D_submodular_parallel.code.submodular_opt import test_diminishing_returns`, pytest's default collector matched the `test_*` pattern, concluded that `test_diminishing_returns` was a test case rather than a library helper, and attempted to resolve the argument `obj` as a pytest fixture.
 - **Verified Fix**: Renamed the helper function to `check_diminishing_returns` across the codebase, reserving the `test_*` prefix strictly for zero-argument or fixture-backed test cases.
-- **Key Lesson**: Never prefix utility, helper, or mathematical verification functions with `test_` inside source modules. Use prefixes like `check_`, `verify_`, or `validate_` to prevent pytest fixture auto-discovery collisions.
+---
+
+## Case 6: Unsound Linear Liveness in Dead-Code Elimination and LICM Causing Infinite Loops
+
+- **Track & Component**: Track F (Compiler Optimization — `optimizer.py`)
+- **AI Tool & Model**: Gemini 3.8 Flash (High)
+- **Issue Classification**: `[Correctness Failure / Semantic Corruption]`
+- **Description & Output**: During the optimization of `Prog3_LICM_Loop`, the VM interpreter entered an infinite loop, aborting with:
+  `RuntimeError: Program exceeded maximum cycle limit (500000)`.
+  Inspection of the optimized Three-Address Code (TAC) revealed that the loop variable update `i = i + 1` had been completely eliminated by the Dead-Code Elimination (DCE) pass, and the loop conditional header `t0 = i < 10` had been hoisted outside the loop as an invariant constant condition `1`.
+- **Root Cause**: The initial implementation used a naive single-pass linear backward scan across the instruction sequence to compute variable liveness. Because the scan traversed instructions top-to-bottom/bottom-to-top without constructing a Control Flow Graph (CFG), it failed to propagate liveness across the loop back-edge (`JUMP $L_header`). As a result, the variable `i` appeared unread after the end of the loop, marking `i = i + 1` as dead code. Once the increment was removed, LICM observed that `i` was never modified within the loop body and incorrectly hoisted the loop termination test outside the loop header, locking the program in an infinite cycle.
+- **Verified Fix**: Replaced the linear liveness heuristic with formal basic-block Control Flow Graph (CFG) partitioning and iterative backward dataflow analysis. Computed predecessors, successors, and solved the fixed-point equations:
+  $$\text{IN}[B] = \text{USE}[B] \cup (\text{OUT}[B] \setminus \text{DEF}[B])$$
+  $$\text{OUT}[B] = \bigcup_{S \in \text{SUCC}[B]} \text{IN}[S]$$
+  Iterating until convergence ensured variables live across loop back-edges are preserved. LICM was also hardened to verify all loop-carried dependencies before hoisting.
+- **Key Lesson**: Compiler optimizations across control structures cannot rely on linear heuristics. Any transformation involving liveness (DCE), common subexpressions (CSE), or code motion (LICM) must operate over a mathematically rigorous CFG with fixed-point iterative dataflow equations that explicitly model loop back-edges.
+
 
