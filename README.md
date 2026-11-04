@@ -10,10 +10,10 @@
 
 ## Quick Navigation & Core Deliverables
 
-- 📄 **Master Technical Report**: [`report/TECHNICAL_REPORT.md`](./report/TECHNICAL_REPORT.md) (All 10 Tracks A–J + Section 11 Answers)
+- 📄 **Final Technical Report (PDF)**: [`Assignment8_Technical_Report_Vanshika_Shah.pdf`](./Assignment8_Technical_Report_Vanshika_Shah.pdf)
+- 📝 **Master Technical Report (Markdown)**: [`report/TECHNICAL_REPORT.md`](./report/TECHNICAL_REPORT.md) (All 10 Tracks A–J + Section 11 Answers)
 - 📋 **Final Submission Checklist**: [`SUBMISSION_CHECKLIST.md`](./SUBMISSION_CHECKLIST.md) (Verified against Section 9)
 - 🎙️ **5-Minute Demo Script & Shot List**: [`DEMO_SCRIPT.md`](./DEMO_SCRIPT.md) (Timing, speaker lines & live commands)
-- 🧠 **Viva Cheat-Sheet & Questions**: [`VIVA_CHEATSHEET.md`](./VIVA_CHEATSHEET.md) (30 oral defense questions & invariants)
 - ⚠️ **AI Failure Log**: [`FAILURE_LOG.md`](./FAILURE_LOG.md) (10 authentic AI error cases, fixes & lessons)
 - ⚔️ **Head-to-Head AI Tool Comparison**: [`TOOL_COMPARISON.md`](./TOOL_COMPARISON.md) (Gemini 3.8 Flash vs Claude 3.5 Sonnet vs GPT-4o)
 - 💬 **Complete Prompt Logs**: [`prompts/`](./prompts/) (Prompt histories for every track)

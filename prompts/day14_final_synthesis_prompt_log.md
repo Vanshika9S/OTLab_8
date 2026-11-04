@@ -28,7 +28,7 @@ COMMIT EVERYTHING AFTER CHECKINGGG
 - Updated `README.md` with finalized AI Tools Register, full 78-test coverage checklist, and explicit links to documentation.
 - Conducted repository-wide secret leak scan (zero secrets detected) and verified all AI commits carry the prefix `[AI:gemini-3.8-flash]`.
 - Authored [`DEMO_SCRIPT.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/DEMO_SCRIPT.md) with a 300-second speaker script and shot list.
-- Authored [`VIVA_CHEATSHEET.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/VIVA_CHEATSHEET.md) with key functions, invariants, and 30 likely viva questions with model answers.
+- Authored [`Assignment8_Technical_Report_Vanshika_Shah.pdf`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/Assignment8_Technical_Report_Vanshika_Shah.pdf) complete with student details and benchmark figures.
 - Authored [`SUBMISSION_CHECKLIST.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/SUBMISSION_CHECKLIST.md) auditing all requirements of Section 9.
 
 ## 3. Revised Prompt / Follow-up
@@ -43,7 +43,7 @@ COMMIT EVERYTHING AFTER CHECKINGGG
 - [`track_G_xv6/REPORT.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/track_G_xv6/REPORT.md)
 - [`prompts/track_G/day9_xv6_prompt_log.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/prompts/track_G/day9_xv6_prompt_log.md)
 - [`DEMO_SCRIPT.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/DEMO_SCRIPT.md)
-- [`VIVA_CHEATSHEET.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/VIVA_CHEATSHEET.md)
+- [`Assignment8_Technical_Report_Vanshika_Shah.pdf`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/Assignment8_Technical_Report_Vanshika_Shah.pdf)
 - [`SUBMISSION_CHECKLIST.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/SUBMISSION_CHECKLIST.md)
 - [`README.md`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/README.md)
 - [`pytest.ini`](file:///c:/Users/satye/OneDrive/Desktop/OTLab8/pytest.ini)
